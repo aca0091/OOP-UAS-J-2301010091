@@ -131,8 +131,8 @@ public class form_seaman extends javax.swing.JFrame {
             
             while(RS.next()){
                 Object[] dta = new Object[8];
-                dta[0] = RS.getString("CREW_ID");
-                dta[1] = RS.getString("NAMA");
+                dta[0] = RS.getString("NAMA");
+                dta[1] = RS.getString("CREW_ID");
                 dta[2] = RS.getString("EXPERIENCE");
                 dta[3] = RS.getString("POSITION");
                 dta[4] = RS.getString("DOKUMENT");
@@ -187,6 +187,7 @@ public class form_seaman extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel1.setText("DATA SEAMAN");
 
+        TM.setBackground(new java.awt.Color(255, 192, 203));
         TM.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         TM.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         TM.setModel(new javax.swing.table.DefaultTableModel(
@@ -266,6 +267,8 @@ public class form_seaman extends javax.swing.JFrame {
 
         jLabel10.setText("REMARK");
 
+        cBARU.setBackground(new java.awt.Color(255, 192, 203));
+        cBARU.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         cBARU.setText("Baru");
         cBARU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +276,8 @@ public class form_seaman extends javax.swing.JFrame {
             }
         });
 
+        cUBAH.setBackground(new java.awt.Color(255, 192, 203));
+        cUBAH.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         cUBAH.setText("Ubah");
         cUBAH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,6 +285,8 @@ public class form_seaman extends javax.swing.JFrame {
             }
         });
 
+        cHAPUS.setBackground(new java.awt.Color(255, 192, 203));
+        cHAPUS.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         cHAPUS.setText("Hapus");
         cHAPUS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,6 +294,8 @@ public class form_seaman extends javax.swing.JFrame {
             }
         });
 
+        cTUTUP.setBackground(new java.awt.Color(255, 192, 203));
+        cTUTUP.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         cTUTUP.setText("Tutup");
         cTUTUP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +316,6 @@ public class form_seaman extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 55, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(416, 416, 416)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -343,13 +351,17 @@ public class form_seaman extends javax.swing.JFrame {
                                         .addComponent(txREMARK, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(117, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(270, 270, 270))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -393,7 +405,7 @@ public class form_seaman extends javax.swing.JFrame {
                     .addComponent(cUBAH)
                     .addComponent(cHAPUS)
                     .addComponent(cTUTUP))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -450,7 +462,6 @@ public class form_seaman extends javax.swing.JFrame {
         txINTERVIEW.setText(TM.getValueAt(TM.getSelectedRow(),5).toString());
         txCONTACT.setText(TM.getValueAt(TM.getSelectedRow(),6).toString());
         txREMARK.setText(TM.getValueAt(TM.getSelectedRow(),7).toString());
-        txNAMA.setText(TM.getValueAt(TM.getSelectedRow(),8).toString());
         cUBAH.setEnabled(true);
         cHAPUS.setEnabled(true);
     }//GEN-LAST:event_TMMouseClicked
@@ -546,13 +557,13 @@ public class form_seaman extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(fMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(form_seaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(fMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(form_seaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(fMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(form_seaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(fMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(form_seaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
