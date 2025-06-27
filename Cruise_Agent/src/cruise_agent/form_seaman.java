@@ -68,15 +68,15 @@ public class form_seaman extends javax.swing.JFrame {
     private void updatedta()throws SQLException{
         Connection cnn = koneksi();
         if(!cnn.isClosed()){
-            PreparedStatement PS = cnn.prepareStatement("UPDATE seaman SET NAMA=?, CREW_ID=?, EXPERIENCE=?, POSITION=?, DOKUMENT=?, INTERVIEW_PASSED=?, EMERGENCY_CONTACT=?, REMARK=?;");
+            PreparedStatement PS = cnn.prepareStatement("UPDATE seaman SET NAMA=?, EXPERIENCE=?, POSITION=?, DOKUMENT=?, INTERVIEW_PASSED=?, EMERGENCY_CONTACT=?, REMARK=? WHERE  CREW_ID=?;");
             PS.setString(1, txNAMA.getText());
-            PS.setString(2, txID.getText());
-            PS.setString(3, txEXPERIENCE.getText());
-            PS.setString(4, txPOSITION.getText());
-            PS.setString(5, txDOKUMENT.getText());
-            PS.setString(6, txINTERVIEW.getText());
-            PS.setString(7, txCONTACT.getText());
-            PS.setString(8, txREMARK.getText());
+            PS.setString(8, txID.getText());
+            PS.setString(2, txEXPERIENCE.getText());
+            PS.setString(3, txPOSITION.getText());
+            PS.setString(4, txDOKUMENT.getText());
+            PS.setString(5, txINTERVIEW.getText());
+            PS.setString(6, txCONTACT.getText());
+            PS.setString(7, txREMARK.getText());
             PS.executeUpdate();
             cnn.close();
         }
@@ -454,8 +454,8 @@ public class form_seaman extends javax.swing.JFrame {
     }//GEN-LAST:event_cBARUActionPerformed
 
     private void TMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TMMouseClicked
-        txID.setText(TM.getValueAt(TM.getSelectedRow(),0).toString());
-        txNAMA.setText(TM.getValueAt(TM.getSelectedRow(),1).toString());
+        txNAMA.setText(TM.getValueAt(TM.getSelectedRow(),0).toString());
+        txID.setText(TM.getValueAt(TM.getSelectedRow(),1).toString());
         txEXPERIENCE.setText(TM.getValueAt(TM.getSelectedRow(),2).toString());
         txPOSITION.setText(TM.getValueAt(TM.getSelectedRow(),3).toString());
         txDOKUMENT.setText(TM.getValueAt(TM.getSelectedRow(),4).toString());
