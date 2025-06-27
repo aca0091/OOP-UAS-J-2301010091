@@ -50,9 +50,9 @@ public class form_seaman extends javax.swing.JFrame {
         
             Connection cnn = koneksi();
             if(!cnn.isClosed()){
-                PreparedStatement PS = cnn.prepareStatement("INSERT INTO seaman(CREW_ID,NAMA,EXPERIENCE,POSITION,DOKUMENT,INTERVIEW_PASSED,EMERGENCY_CONTACT,REMARK) VALUES(?,?,?,?,?,?,?,?);");
-                PS.setString(1, txID.getText());
-                PS.setString(2, txNAMA.getText());
+                PreparedStatement PS = cnn.prepareStatement("INSERT INTO seaman(NAMA,CREW_ID,EXPERIENCE,POSITION,DOKUMENT,INTERVIEW_PASSED,EMERGENCY_CONTACT,REMARK) VALUES(?,?,?,?,?,?,?,?);");
+                PS.setString(1, txNAMA.getText());
+                PS.setString(2, txID.getText());
                 PS.setString(3, txEXPERIENCE.getText());
                 PS.setString(4, txPOSITION.getText());
                 PS.setString(5, txDOKUMENT.getText());
@@ -99,8 +99,8 @@ public class form_seaman extends javax.swing.JFrame {
     }
     
     private void fieldIsian(boolean opsi){
-        txID.setEnabled(opsi);
         txNAMA.setEnabled(opsi);
+        txID.setEnabled(opsi);
         txEXPERIENCE.setEnabled(opsi);
         txPOSITION.setEnabled(opsi);
         txDOKUMENT.setEnabled(opsi);
@@ -110,8 +110,8 @@ public class form_seaman extends javax.swing.JFrame {
         
     }
     private void cleartextField(){
-        txID.setText("");
         txNAMA.setText("");
+        txID.setText("");
         txEXPERIENCE.setText("");
         txPOSITION.setText("");
         txDOKUMENT.setText("");
