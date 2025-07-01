@@ -41,8 +41,50 @@ public class form_seaman extends javax.swing.JFrame {
         this.ListDataTable();
         tombol(false);
         cBARU.setEnabled(true);
+        cUBAH.setEnabled(true);
+        cHAPUS.setEnabled(true);
+        cTUTUP.setEnabled(true);
+        cbPos.setVisible(false);
+        cbInter.setVisible(false);
         fieldIsian(false);
+        expyesno();
+        postcb();
+        intercb();
+        
     
+    }
+    private void expyesno(){
+        txEXPERIENCE.removeAllItems();
+        txEXPERIENCE.addItem("YES");
+        txEXPERIENCE.addItem("NO");
+    }
+    
+    private void postcb(){
+        cbPos.removeAllItems();
+        cbPos.addItem("Waitress");
+        cbPos.addItem("Waiter");
+        cbPos.addItem("Cabin Steward");
+        cbPos.addItem("Hotel Steward");
+        cbPos.addItem("Laundry Attd");
+        cbPos.addItem("Cook");
+        cbPos.addItem("Asst Cook");
+        cbPos.addItem("Galley");
+        cbPos.addItem("Barista");
+        cbPos.addItem("Bartender");
+        cbPos.addItem("Bar Server");
+        
+        
+    }
+    
+    private void intercb(){
+        cbInter.removeAllItems();
+        cbInter.addItem("English");
+        cbInter.addItem("Knowledge");
+        cbInter.addItem("Final");
+        cbInter.addItem("HireFlix");
+        cbInter.addItem("False");
+        
+        
     }
     
     private void storeDta()throws SQLException{
@@ -53,7 +95,7 @@ public class form_seaman extends javax.swing.JFrame {
                 PreparedStatement PS = cnn.prepareStatement("INSERT INTO seaman(NAMA,CREW_ID,EXPERIENCE,POSITION,DOKUMENT,INTERVIEW_PASSED,EMERGENCY_CONTACT,REMARK) VALUES(?,?,?,?,?,?,?,?);");
                 PS.setString(1, txNAMA.getText());
                 PS.setString(2, txID.getText());
-                PS.setString(3, txEXPERIENCE.getText());
+                PS.setString(3, txEXPERIENCE.getSelectedItem().toString());
                 PS.setString(4, txPOSITION.getText());
                 PS.setString(5, txDOKUMENT.getText());
                 PS.setString(6, txINTERVIEW.getText());
@@ -71,7 +113,7 @@ public class form_seaman extends javax.swing.JFrame {
             PreparedStatement PS = cnn.prepareStatement("UPDATE seaman SET NAMA=?, EXPERIENCE=?, POSITION=?, DOKUMENT=?, INTERVIEW_PASSED=?, EMERGENCY_CONTACT=?, REMARK=? WHERE  CREW_ID=?;");
             PS.setString(1, txNAMA.getText());
             PS.setString(8, txID.getText());
-            PS.setString(2, txEXPERIENCE.getText());
+            PS.setString(2, (String) txEXPERIENCE.getSelectedItem());
             PS.setString(3, txPOSITION.getText());
             PS.setString(4, txDOKUMENT.getText());
             PS.setString(5, txINTERVIEW.getText());
@@ -112,7 +154,7 @@ public class form_seaman extends javax.swing.JFrame {
     private void cleartextField(){
         txNAMA.setText("");
         txID.setText("");
-        txEXPERIENCE.setText("");
+        txEXPERIENCE.setSelectedItem("");
         txPOSITION.setText("");
         txDOKUMENT.setText("");
         txINTERVIEW.setText("");
@@ -171,7 +213,6 @@ public class form_seaman extends javax.swing.JFrame {
         txID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txEXPERIENCE = new javax.swing.JTextField();
         txPOSITION = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txCONTACT = new javax.swing.JTextField();
@@ -181,15 +222,19 @@ public class form_seaman extends javax.swing.JFrame {
         cUBAH = new javax.swing.JButton();
         cHAPUS = new javax.swing.JButton();
         cTUTUP = new javax.swing.JButton();
+        txEXPERIENCE = new javax.swing.JComboBox<>();
+        cbPos = new javax.swing.JComboBox<>();
+        cbInter = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel1.setText("DATA SEAMAN");
 
-        TM.setBackground(new java.awt.Color(255, 192, 203));
+        TM.setBackground(new java.awt.Color(25, 25, 122));
         TM.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         TM.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        TM.setForeground(new java.awt.Color(224, 255, 255));
         TM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -201,6 +246,7 @@ public class form_seaman extends javax.swing.JFrame {
                 "NAMA", "CREW_ID", "EXPERIENCE", "POSITION", "DOKUMENT", "INTERVIEW_PASSED", "EMERGENCY_CONTACT", "REMARK"
             }
         ));
+        TM.setSelectionBackground(new java.awt.Color(25, 25, 122));
         TM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TMMouseClicked(evt);
@@ -218,6 +264,7 @@ public class form_seaman extends javax.swing.JFrame {
 
         jLabel6.setText("POSITION");
 
+        txNAMA.setForeground(new java.awt.Color(25, 25, 122));
         txNAMA.setText("jTextField1");
 
         txDOKUMENT.setText("jTextField1");
@@ -244,8 +291,6 @@ public class form_seaman extends javax.swing.JFrame {
         jLabel7.setText("EXPERIENCE");
 
         jLabel8.setText("INTERVIEW_PASSED");
-
-        txEXPERIENCE.setText("jTextField1");
 
         txPOSITION.setText("jTextField1");
         txPOSITION.addActionListener(new java.awt.event.ActionListener() {
@@ -303,6 +348,18 @@ public class form_seaman extends javax.swing.JFrame {
             }
         });
 
+        txEXPERIENCE.setForeground(new java.awt.Color(25, 25, 122));
+        txEXPERIENCE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txEXPERIENCE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txEXPERIENCEActionPerformed(evt);
+            }
+        });
+
+        cbPos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbInter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,21 +371,19 @@ public class form_seaman extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 55, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(416, 416, 416)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(416, 620, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cBARU)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cUBAH)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cHAPUS)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cTUTUP))
-                                .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cBARU)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cUBAH)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cHAPUS))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txDOKUMENT, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,21 +391,23 @@ public class form_seaman extends javax.swing.JFrame {
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txNAMA, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txEXPERIENCE, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(78, 78, 78)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txEXPERIENCE, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(78, 78, 78)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txPOSITION, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txINTERVIEW, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(txREMARK, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(117, Short.MAX_VALUE))))
+                                        .addComponent(txID, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                        .addComponent(txPOSITION, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                        .addComponent(txINTERVIEW, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txREMARK, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbPos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbInter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cTUTUP, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addContainerGap(203, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,8 +422,8 @@ public class form_seaman extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -391,21 +448,25 @@ public class form_seaman extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txPOSITION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txINTERVIEW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(1, 1, 1)
+                        .addComponent(cbInter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txREMARK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cBARU)
-                    .addComponent(cUBAH)
+                    .addComponent(cTUTUP)
                     .addComponent(cHAPUS)
-                    .addComponent(cTUTUP))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(cUBAH)
+                    .addComponent(cBARU))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -437,6 +498,10 @@ public class form_seaman extends javax.swing.JFrame {
             cTUTUP.setText("Batal");
             cUBAH.setEnabled(false);
             cHAPUS.setEnabled(false);
+            cbPos.setVisible(true);
+            txPOSITION.setVisible(false);
+            cbInter.setVisible(true);
+            txINTERVIEW.setVisible(false);
             cleartextField();
             fieldIsian(true);
         }else{
@@ -449,6 +514,10 @@ public class form_seaman extends javax.swing.JFrame {
                 Logger.getLogger(form_seaman.class.getName()).log(Level.SEVERE, null, ex);
             }
             cleartextField();
+            cbPos.setVisible(false);
+            txPOSITION.setVisible(true);
+            cbInter.setVisible(false);
+            txINTERVIEW.setVisible(true);
             fieldIsian(false);
         }
     }//GEN-LAST:event_cBARUActionPerformed
@@ -456,7 +525,7 @@ public class form_seaman extends javax.swing.JFrame {
     private void TMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TMMouseClicked
         txNAMA.setText(TM.getValueAt(TM.getSelectedRow(),0).toString());
         txID.setText(TM.getValueAt(TM.getSelectedRow(),1).toString());
-        txEXPERIENCE.setText(TM.getValueAt(TM.getSelectedRow(),2).toString());
+        txEXPERIENCE.setSelectedItem(TM.getValueAt(TM.getSelectedRow(),2).toString());
         txPOSITION.setText(TM.getValueAt(TM.getSelectedRow(),3).toString());
         txDOKUMENT.setText(TM.getValueAt(TM.getSelectedRow(),4).toString());
         txINTERVIEW.setText(TM.getValueAt(TM.getSelectedRow(),5).toString());
@@ -474,6 +543,10 @@ public class form_seaman extends javax.swing.JFrame {
             cHAPUS.setEnabled(false);
             fieldIsian(true);
             txID.setEditable(false);
+            cbPos.setVisible(true);
+            txPOSITION.setVisible(false);
+            cbInter.setVisible(true);
+            txINTERVIEW.setVisible(false);
         }else{
             cUBAH.setText("Ubah");
             cTUTUP.setText("Tutup");
@@ -485,6 +558,10 @@ public class form_seaman extends javax.swing.JFrame {
             }
             cleartextField();
             fieldIsian(false);
+            cbInter.setVisible(false);
+            txINTERVIEW.setVisible(true);
+            cbPos.setVisible(false);
+            txPOSITION.setVisible(true);
             cBARU.setEnabled(true);
             cUBAH.setEnabled(false);
         }
@@ -508,6 +585,13 @@ public class form_seaman extends javax.swing.JFrame {
             cBARU.setText("Baru");
             cUBAH.setText("Ubah");
             fieldIsian(false);
+            cbPos.setVisible(false);
+            txPOSITION.setVisible(true);
+            cbInter.setVisible(false);
+            txINTERVIEW.setVisible(true);
+            cBARU.setEnabled(true);
+            cUBAH.setEnabled(true);
+            cHAPUS.setEnabled(true);
             
         }
     }//GEN-LAST:event_cTUTUPActionPerformed
@@ -539,6 +623,10 @@ public class form_seaman extends javax.swing.JFrame {
                 cHAPUS.setEnabled(false);
         }
     }//GEN-LAST:event_cHAPUSActionPerformed
+
+    private void txEXPERIENCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txEXPERIENCEActionPerformed
+        
+    }//GEN-LAST:event_txEXPERIENCEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -585,6 +673,8 @@ public class form_seaman extends javax.swing.JFrame {
     private javax.swing.JButton cHAPUS;
     private javax.swing.JButton cTUTUP;
     private javax.swing.JButton cUBAH;
+    private javax.swing.JComboBox<String> cbInter;
+    private javax.swing.JComboBox<String> cbPos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -598,7 +688,7 @@ public class form_seaman extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txCONTACT;
     private javax.swing.JTextField txDOKUMENT;
-    private javax.swing.JTextField txEXPERIENCE;
+    private javax.swing.JComboBox<String> txEXPERIENCE;
     private javax.swing.JTextField txID;
     private javax.swing.JTextField txINTERVIEW;
     private javax.swing.JTextField txNAMA;
